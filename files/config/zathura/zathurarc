@@ -1,0 +1,9 @@
+set default-bg "#641e16"
+set font "FreeSans Regular 10"
+set inputbar-bg "#641e16"
+set completion-bg "#641e16"
+set statusbar-bg "#641e16"
+set page-padding 15
+set recolor-lightcolor "#353836" 
+
+set guioptions none
