@@ -27,7 +27,7 @@ font xft:URWGothic-Book 11
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec kitty 
+bindsym $mod+Return exec kitty
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -42,11 +42,11 @@ bindsym $mod+z exec --no-startup-id morc_menu
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
 ################################################################################################
 
-exec --no-startup-id volumeicon
-bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
-#exec --no-startup-id pulseaudio
-#exec --no-startup-id pa-applet
-#bindsym $mod+Ctrl+m exec pavucontrol
+##exec --no-startup-id volumeicon
+##bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
+exec --no-startup-id start-pulseaudio-x11
+exec --no-startup-id pa-applet
+bindsym $mod+Ctrl+m exec pavucontrol
 
 ################################################################################################
 
@@ -287,13 +287,6 @@ exec --no-startup-id xautolock -time 10 -locker blurlock
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 
-
-##
-# Deine some custom colors: 
-set $bordeaux1 #641e16
-set $purple1 #4a235a 
-set $blue #21618c
-
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:
 # https://i3wm.org/docs/userguide.html#xresources
@@ -341,12 +334,12 @@ bar {
 	strip_workspace_numbers yes
 
     colors {
-        background $bordeaux1
+        background #222D31
         statusline #F9FAF9
         separator  #454947
 
-#                           border  backgr. text
-        focused_workspace  $blue    $blue  #292F34
+#                      border  backgr. text
+        focused_workspace  #F9FAF9 #16a085 #292F34
         active_workspace   #595B5B #353836 #FDF6E3
         inactive_workspace #595B5B #222D31 #EEE8D5
         binding_mode       #16a085 #2C2C2C #F9FAF9
@@ -372,7 +365,7 @@ bindsym $mod+m bar mode toggle
 #############################
 
 # Set inner/outer gaps
-gaps inner 14
+gaps inner 10
 gaps outer -2
 
 # Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
