@@ -13,9 +13,31 @@ pull_zathura:
 pull_dmenu:
 	cp ~/.dmenurc files/dmenurc
 
+push_i3:
+	cp files/i3/config ~/.i3/config 
+
+push_nvim:
+	cp files/config/nvim/init.vim ~/.config/nvim/init.vim 
+
+push_kitty:
+	cp files/config/kitty/kitty.conf ~/.config/kitty/kitty.conf 
+
+push_zathura:
+	cp files/config/zathura/zathurarc ~/.config/zathura/zathurarc 
+
+push_dmenu:
+	cp files/dmenurc ~/.dmenurc 
+
 pull:
 	make pull_i3
 	make pull_kitty
 	make pull_nvim
 	make pull_zathura
 	make pull_dmenu
+
+push:
+	make push_i3
+	make push_kitty
+	make push_nvim
+	make push_zathura
+	make push_dmenu

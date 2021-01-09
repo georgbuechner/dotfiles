@@ -6,13 +6,13 @@
 DMENU_FN="Noto-10.5"
 
 ## background colour for unselected menu-items
-DMENU_NB="#222D31"
+DMENU_NB="#353836"
 
 ## textcolour for unselected menu-items
 DMENU_NF="#F9FAF9"
 
 ## background colour for selected menu-items
-DMENU_SB="#16A085"
+DMENU_SB="#641e16"
 
 ## textcolour for selected menu-items
 DMENU_SF="#F9FAF9"
