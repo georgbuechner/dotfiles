@@ -16,6 +16,9 @@ pull_dmenu:
 pull_xmodmap:
 	cp ~/.Xmodmap files/Xmodmap
 
+pull_zsh:
+	cp ~/.zshrc files/zshrc
+
 push_i3:
 	cp files/i3/config ~/.i3/config 
 
@@ -34,6 +37,9 @@ push_dmenu:
 push_xmodmap:
 	cp files/Xmodmap ~/.Xmodmap
 
+push_dmenu:
+	cp files/zshrc ~/.zshrc
+
 pull:
 	make pull_i3
 	make pull_kitty
@@ -41,6 +47,7 @@ pull:
 	make pull_zathura
 	make pull_dmenu
 	make push_xmodmap
+	make pull_zsh
 
 push:
 	make push_i3
@@ -49,3 +56,4 @@ push:
 	make push_zathura
 	make push_dmenu
 	make push_xmodmap
+	make push_zsh
