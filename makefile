@@ -49,3 +49,6 @@ push:
 	make push_zathura
 	make push_dmenu
 	make push_xmodmap
+
+shs:
+	cp scripts/* /usr/local/bin
