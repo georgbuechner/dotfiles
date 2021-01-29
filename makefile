@@ -61,7 +61,6 @@ push:
 	make push_dunst
 	make push_dmenu
 	make push_xmodmap
-	make push_zsh
 
 shs:
 	cp scripts/* /usr/local/bin
