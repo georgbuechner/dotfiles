@@ -43,9 +43,6 @@ push_dmenu:
 push_xmodmap:
 	cp files/Xmodmap ~/.Xmodmap
 
-push_dmenu:
-	cp files/zshrc ~/.zshrc
-
 pull:
 	make pull_i3
 	make pull_kitty

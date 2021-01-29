@@ -145,7 +145,7 @@
     dmenu = /usr/bin/dmenu -p dunst:
     
     # Browser for opening urls in context menu.
-    browser = palemoon
+    browser = firefox 
 
     # Align icons left/right/off
     icon_position = left
@@ -181,17 +181,17 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#263238"
+    background = "#641e16"
     foreground = "#556064"
     timeout = 10
 
 [urgency_normal]
-    background = "#263238"
+    background = "#641e16"
     foreground = "#F9FAF9"
     timeout = 10
 
 [urgency_critical]
-    background = "#D62929"
+    background = "#641e16"
     foreground = "#F9FAF9"
     timeout = 0
 
