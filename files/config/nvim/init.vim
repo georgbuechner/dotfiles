@@ -20,11 +20,32 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'SirVer/ultisnips'
 Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
 Plug 'lervag/vimtex'
+Plug 'preservim/nerdtree'
 
+nmap nt :NERDTreeToggle<cr>
+nmap nf :NERDTreeFocus<cr>
+
+nmap rn <Plug>(coc-rename)
+
+nmap cm :call CompileMain()<cr>
+function CompileMain()
+  let compileResult = system("cd build && ninja")
+  let fail = "ninja: build stopped: subcommand failed."
+  if (stridx(compileResult, fail) != -1)
+    vsplit __compile_result__
+    normal! ggdG
+    setlocal buftype=nofile
+    call append(0, split(compileResult,'\v\n'))
+  else 
+    echo "build success"
+  endif
+endfunction
+
+nmap pj :%!python -m json.tool
 
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-let g:indentLine_char = '|'
+  let g:indentLine_char = '|'
 let g:UltiSnipsExpandTrigger="<C-s>"
 
 nmap cs :Snippets<cr>
@@ -81,6 +102,9 @@ set smartcase
 call plug#end()
 
 
+" set colors 
+colo gruvbox
+
 let $FZF_DEFAULT_COMMAND = 'rg --files '
 
 set textwidth=80
@@ -92,7 +116,6 @@ set noshiftround
 set updatetime=300
 set shortmess+=c
 set smartcase
-colo molokai 
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
@@ -129,12 +152,12 @@ set shortmess+=c
 
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
-if has("patch-8.1.1564")
+"if has("patch-8.1.1564")
   " Recently vim can merge signcolumn and number column into one
-  set signcolumn=number
-else
-  set signcolumn=yes
-endif
+"  set signcolumn=number
+"else
+"  set signcolumn=yes
+"endif
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
