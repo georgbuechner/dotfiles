@@ -10,6 +10,9 @@ pull_kitty:
 pull_zathura:
 	cp ~/.config/zathura/zathurarc files/config/zathura/zathurarc
 
+pull_dunst:
+	cp ~/.config/dunst/dunstrc files/config/dunst/dunstrc
+
 pull_dmenu:
 	cp ~/.dmenurc files/dmenurc
 
@@ -28,6 +31,9 @@ push_kitty:
 push_zathura:
 	cp files/config/zathura/zathurarc ~/.config/zathura/zathurarc 
 
+push_dunst:
+	cp files/config/dunst/dunstrc ~/.config/dunst/dunstrc
+
 push_dmenu:
 	cp files/dmenurc ~/.dmenurc 
 
@@ -39,6 +45,7 @@ pull:
 	make pull_kitty
 	make pull_nvim
 	make pull_zathura
+	make pull_dunst
 	make pull_dmenu
 	make push_xmodmap
 
@@ -47,6 +54,7 @@ push:
 	make push_kitty
 	make push_nvim
 	make push_zathura
+	make push_dunst
 	make push_dmenu
 	make push_xmodmap
 
