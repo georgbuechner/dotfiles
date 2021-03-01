@@ -59,8 +59,15 @@ nmap cj :Gcommit<cr>
 nmap ck :Gpush<cr>
 nmap ce :Gwrite<cr>
 nmap c1 :Dox<cr>
+nmap rg :Clap grep2<cr>
 nmap cx :call OpenTerminalOwn("")<Left><Left>
 nmap ch :Clap commits<cr>
+
+" Use ctrl-[hjkl] to select the active split!
+nmap <silent> <c-k> :wincmd k<CR>
+nmap <silent> <c-j> :wincmd j<CR>
+nmap <silent> <c-h> :wincmd h<CR>
+nmap <silent> <c-l> :wincmd l<CR>
 
 autocmd VimEnter *
   \ let &statusline='%{bufferline#refresh_status()}'
