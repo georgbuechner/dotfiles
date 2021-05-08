@@ -2,6 +2,7 @@ let mapleader=" "
 set number
 set encoding=utf-8
 set fileencoding=utf-8
+set conceallevel=0
 
 set hidden
 call plug#begin('~/.vim/plugged')
@@ -21,6 +22,13 @@ Plug 'SirVer/ultisnips'
 Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
 Plug 'lervag/vimtex'
 Plug 'preservim/nerdtree'
+Plug 'puremourning/vimspector'
+" If you don't have nodejs and yarn
+" use pre build, add 'vim-plug' to the filetype list so vim-plug can update this plugin
+" see: https://github.com/iamcco/markdown-preview.nvim/issues/50
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+
+let g:vimspector_enable_mappings = 'HUMAN'
 
 nmap nt :NERDTreeToggle<cr>
 nmap nf :NERDTreeFocus<cr>
@@ -40,6 +48,22 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
+" Funny stuff for taking notes.
+" command! -nargs=* wn :update<cr>
+nmap <silent>gn :call SaveNoteAs()<cr>
+
+function SaveNoteAs() 
+  call inputsave()
+  let title = input("Filename: ")
+  call inputrestore()
+  let cmd = ":w ~/Documents/notes/" . title . ".md"
+  echo cmd
+  execute cmd
+  let cmd2 = "cd ~/Documents/notes/ && git pull && git add " . title . ".md"
+  let res = system(cmd2)
+  echo res
+endfunction
+
 
 nmap cm :call CompileMain()<cr>
 function CompileMain()
@@ -55,7 +79,7 @@ function CompileMain()
   endif
 endfunction
 
-nmap pj :%!python -m json.tool
+nmap gj :%!python -m json.tool
 
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
@@ -66,7 +90,6 @@ nmap cs :Snippets<cr>
 nmap cp :Clap files<cr>
 nmap cb :Clap buffers<cr>
 nmap cl :Clap lines<cr>
-nmap ca <Plug>(easymotion-overwin-f)
 nmap s <Plug>(easymotion-overwin-f)
 nmap S <Plug>(easymotion-overwin-line)
 nmap cj :Gcommit<cr>
