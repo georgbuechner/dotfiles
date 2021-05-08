@@ -27,6 +27,8 @@ Plug 'puremourning/vimspector'
 " see: https://github.com/iamcco/markdown-preview.nvim/issues/50
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 
+let g:vimspector_enable_mappings = 'HUMAN'
+
 Plug 'junegunn/goyo.vim'
 Plug 'rhysd/open-pdf.vim'
 
