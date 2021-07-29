@@ -151,7 +151,7 @@ colo gruvbox
 
 let $FZF_DEFAULT_COMMAND = 'rg --files '
 
-set textwidth=80
+set textwidth=90
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
