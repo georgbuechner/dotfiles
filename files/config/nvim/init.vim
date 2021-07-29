@@ -2,6 +2,7 @@ let mapleader=" "
 set number
 set encoding=utf-8
 set fileencoding=utf-8
+set conceallevel=0
 
 set hidden
 call plug#begin('~/.vim/plugged')
@@ -18,12 +19,31 @@ Plug 'rust-lang/rust.vim'
 Plug 'Yggdroot/indentLine',{ 'for': 'cpp' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'SirVer/ultisnips'
-Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
 Plug 'lervag/vimtex'
 Plug 'preservim/nerdtree'
+Plug 'puremourning/vimspector'
+" If you don't have nodejs and yarn
+" use pre build, add 'vim-plug' to the filetype list so vim-plug can update this plugin
+" see: https://github.com/iamcco/markdown-preview.nvim/issues/50
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 
-nmap nt :NERDTreeToggle<cr>
-nmap nf :NERDTreeFocus<cr>
+Plug 'junegunn/goyo.vim'
+Plug 'rhysd/open-pdf.vim'
+
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+
+let g:vimspector_enable_mappings = 'HUMAN'
+
+nmap mt :NERDTreeToggle<cr>
+nmap mf :NERDTreeFocus<cr>
+
+" Telescope
+nnoremap <silent>ff <cmd>Telescope find_files<cr>
+nnoremap <silent>fg <cmd>Telescope live_grep<cr>
+nnoremap <silent>fb <cmd>Telescope buffers<cr>
+nnoremap <silent>fc <cmd>Telescope git_commits<cr>
 
 " Coc command bindings:
 nmap ca :CocAction<cr>
@@ -40,6 +60,22 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
+" Funny stuff for taking notes.
+" command! -nargs=* wn :update<cr>
+nmap <silent>gn :call SaveNoteAs()<cr>
+
+function SaveNoteAs() 
+  call inputsave()
+  let title = input("Filename: ")
+  call inputrestore()
+  let cmd = ":w ~/Documents/notes/" . title . ".md"
+  echo cmd
+  execute cmd
+  let cmd2 = "cd ~/Documents/notes/ && git pull && git add " . title . ".md"
+  let res = system(cmd2)
+  echo res
+endfunction
+
 
 nmap cm :call CompileMain()<cr>
 function CompileMain()
@@ -55,27 +91,15 @@ function CompileMain()
   endif
 endfunction
 
-nmap pj :%!python -m json.tool
+nmap gj :%!python -m json.tool
 
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
   let g:indentLine_char = '|'
 let g:UltiSnipsExpandTrigger="<C-s>"
 
-nmap cs :Snippets<cr>
-nmap cp :Clap files<cr>
-nmap cb :Clap buffers<cr>
-nmap cl :Clap lines<cr>
-nmap ca <Plug>(easymotion-overwin-f)
 nmap s <Plug>(easymotion-overwin-f)
 nmap S <Plug>(easymotion-overwin-line)
-nmap cj :Gcommit<cr>
-nmap ck :Gpush<cr>
-nmap ce :Gwrite<cr>
-nmap c1 :Dox<cr>
-nmap rg :Clap grep2<cr>
-nmap cx :call OpenTerminalOwn("")<Left><Left>
-nmap ch :Clap commits<cr>
 
 " Use ctrl-[hjkl] to select the active split!
 nmap <silent> <c-k> :wincmd k<CR>
