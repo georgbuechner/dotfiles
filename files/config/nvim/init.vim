@@ -19,7 +19,6 @@ Plug 'rust-lang/rust.vim'
 Plug 'Yggdroot/indentLine',{ 'for': 'cpp' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'SirVer/ultisnips'
-Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
 Plug 'lervag/vimtex'
 Plug 'preservim/nerdtree'
 Plug 'puremourning/vimspector'
@@ -30,8 +29,23 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 
 
 let g:vimspector_enable_mappings = 'HUMAN'
 
-nmap nt :NERDTreeToggle<cr>
-nmap nf :NERDTreeFocus<cr>
+Plug 'junegunn/goyo.vim'
+Plug 'rhysd/open-pdf.vim'
+
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+
+let g:vimspector_enable_mappings = 'HUMAN'
+
+nmap mt :NERDTreeToggle<cr>
+nmap mf :NERDTreeFocus<cr>
+
+" Telescope
+nnoremap <silent>ff <cmd>Telescope find_files<cr>
+nnoremap <silent>fg <cmd>Telescope live_grep<cr>
+nnoremap <silent>fb <cmd>Telescope buffers<cr>
+nnoremap <silent>fc <cmd>Telescope git_commits<cr>
 
 " Coc command bindings:
 nmap ca :CocAction<cr>
@@ -86,19 +100,8 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
   let g:indentLine_char = '|'
 let g:UltiSnipsExpandTrigger="<C-s>"
 
-nmap cs :Snippets<cr>
-nmap cp :Clap files<cr>
-nmap cb :Clap buffers<cr>
-nmap cl :Clap lines<cr>
 nmap s <Plug>(easymotion-overwin-f)
 nmap S <Plug>(easymotion-overwin-line)
-nmap cj :Gcommit<cr>
-nmap ck :Gpush<cr>
-nmap ce :Gwrite<cr>
-nmap c1 :Dox<cr>
-nmap rg :Clap grep2<cr>
-nmap cx :call OpenTerminalOwn("")<Left><Left>
-nmap ch :Clap commits<cr>
 
 " Use ctrl-[hjkl] to select the active split!
 nmap <silent> <c-k> :wincmd k<CR>
