@@ -7,7 +7,7 @@ vim.opt.wrap = true
 vim.opt.breakindent = true
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
-vim.opt.expandtab = false
+vim.opt.expandtab = true
 vim.opt.textwidth = 80
 
 -- ========================================================================== --
@@ -74,8 +74,8 @@ require'lspconfig'.clangd.setup{}
 require('lspconfig')['ltex'].setup{
 	settings = {
 	ltex = {
-			language = "en",
-			-- language = "de-DE",
+			-- language = "en",
+			language = "de-DE",
 		},
 	},
 }
@@ -146,8 +146,6 @@ cmp.setup.cmdline(':', {
 require('hop').setup()
 require('lualine').setup()
 
-vim.cmd [[colorscheme tokyonight]]
-
 require('gitsigns').setup {
   signs = {
     add          = { text = '│' },
@@ -216,15 +214,14 @@ vim.keymap.set('n', '<leader>hr', ":Gitsigns reset_hunk<CR>", {})
 vim.keymap.set('n', '<leader>hp', ":Gitsigns preview_hunk<CR>", {})
 vim.keymap.set('n', '<leader>w', ":HopWord<Return>", {})
 vim.keymap.set('n', '<leader>l', ":HopLine<Return>", {})
-vim.keymap.set('n', '<leader>m', ":PomodoroStatus<Return>", {})
-vim.keymap.set('n', '<leader>p', ":Telescope projects<Return>", {})
-vim.keymap.set('n', '<leader>n', ":Telekasten find_notes<Return>", {})
 
 -- better movement 
 vim.keymap.set('n', '<c-k>', ":wincmd k<CR>", {})
 vim.keymap.set('n', '<c-j>', ":wincmd j<CR>", {})
 vim.keymap.set('n', '<c-h>', ":wincmd h<CR>", {})
 vim.keymap.set('n', '<c-l>', ":wincmd l<CR>", {})
+
+vim.cmd [[colorscheme tokyonight]]
 
 -- Custom funcions
 vim.keymap.set("n", 'gj', ":%!python -m json.tool", {})
@@ -246,22 +243,3 @@ vim.api.nvim_create_user_command("CompileMain",
 	{}
 )
 -- vim.keymap.set("n", "cm", ":call CompileMain()", {})
-
-require('telescope').load_extension('projects')
-require('telekasten').setup({
-  home = vim.fn.expand("~/zettelkasten"), -- Put the name of your notes directory here
-})
-
-vim.keymap.set("n", "<C-p>", function()
-    local picked_window_id = require('window-picker').pick_window() or vim.api.nvim_get_current_win()
-    vim.api.nvim_set_current_win(picked_window_id)
-end, { desc = "Pick a window" })
-require'marks'.setup {
-  mappings = {
-    set_next = "m,",
-    next = "m]",
-    preview = "m:",
-    set_bookmark0 = "m0",
-    prev = false -- pass false to disable only this default mapping
-  }
-}

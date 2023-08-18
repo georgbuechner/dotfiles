@@ -42,18 +42,6 @@ return require('packer').startup(function(use)
 	use {
   	'lewis6991/gitsigns.nvim',
 	}
-	use {
-    'wthollingsworth/pomodoro.nvim',
-    requires = 'MunifTanjim/nui.nvim',
-    config = function()
-        require('pomodoro').setup({
-            time_work = 25,
-            time_break_short = 5,
-            time_break_long = 20,
-            timers_to_long_break = 4
-        })
-    end
-	}
 	use 'mg979/vim-visual-multi'
 	use {
   "ahmedkhalf/project.nvim",
@@ -99,6 +87,6 @@ use {
 	-- use({ "iamcco/markdown-preview.nvim", run = function() vim.fn["mkdp#util#install"]() end, })
 	-- use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
 	-- use {'iamcco/markdown-preview.nvim', run = 'cd app && yarn install', cmd = 'MarkdownPreview'}
-	use { 'iamcco/markdown-preview.nvim', run = function() vim.fn['mkdp#util#install']() end, ft = {'markdown'} }
+	use { 'iamcco/markdown-preview.nvim' }
 
 end)
