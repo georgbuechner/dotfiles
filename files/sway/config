@@ -59,9 +59,20 @@ set $open_in_alacritty alacritty --config-file ~/.config/sway/alacritty/alacritt
 
 ##-- Startup Programs --------------------
 exec_always ~/.config/sway/scripts/startup
+exec_always seaf-cli start
+exec_always killall -SIGUSR1 waybar
 #exec_always ~/.config/sway/scripts/clamshell
 
 ##-- Keybindings -------------------------
+
+# lauch lookup in german and english
+bindsym $mod+Ctrl+e exec word-lookup.sh
+bindsym $mod+Ctrl+d exec word-lookup_de.sh
+bindsym $mod+Shift+x exec xclip ~/Exported\ Items.bib && notify-send "Copied bibtex."
+# launch temp vim file in floating mode.
+bindsym $mod+g exec open_tmp_vim.sh
+bindsym $mod+o exec killall -SIGUSR1 waybar
+
 
 # -- Terminal : alacritty --
 bindsym $mod+Return 			exec $alacritty
@@ -117,6 +128,9 @@ bindsym XF86AudioPrev 			exec "mpc prev"
 bindsym XF86AudioPlay 			exec "mpc toggle"
 bindsym XF86AudioStop 			exec "mpc stop"
 
+bindsym $mod+plus exec "$volume --inc"
+bindsym $mod+minus exec "$volume --dec"
+
 # -- Screenshots --
 bindsym Print 					exec "$screenshot --now"
 bindsym $alt+Print 				exec "$screenshot --in5"
@@ -147,7 +161,7 @@ bindsym $mod+semicolon split horizontal, $send-notify 'Split Horizontally'
 ## split in vertical orientation
 bindsym $mod+Shift+semicolon split vertical, $send-notify 'Split Vertically'
 ## toggle split
-bindsym $mod+g split toggle, $send-notify 'Split Mode'
+# bindsym $mod+g split toggle, $send-notify 'Split Mode'
 
 #------
 
@@ -216,7 +230,7 @@ bindsym $mod+$alt+Right resize grow width 10 px or 10 ppt #------
 
 ## Sticky floating windows (floating only)
 ##
-bindsym $mod+o sticky toggle, $send-notify 'Toggled Sticky'
+# bindsym $mod+o sticky toggle, $send-notify 'Toggled Sticky'
 
 #------
 
@@ -300,10 +314,10 @@ for_window [class="VirtualBox Manager|qemu|Qemu-system-x86_64"] floating enable
 ##-- Misc --------------------------------
 include /etc/sway/config.d/*
 
-bar {
-    swaybar_command waybar
-    position top
-    hidden_state hide
-    mode hide
-    modifier $mod
-}
+# bar {
+#     swaybar_command waybar
+#     position top
+#     hidden_state hide
+#     mode hide
+#     modifier Mod4
+# }

@@ -40,6 +40,9 @@ push_dmenu:
 push_xmodmap:
 	cp files/Xmodmap ~/.Xmodmap
 
+push_us_germ_keys: 
+	cp files/sway/us-german-umlaut ~/.config/xkb/symbols/
+
 pull:
 	make pull_i3
 	make pull_kitty
