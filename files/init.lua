@@ -16,7 +16,7 @@ vim.opt.textwidth = 80
 
 -- Space as leader key
 vim.g.mapleader = ' '
-vim.g["grammarous#jar_url"] = 'https://www.languagetool.org/download/LanguageTool-5.9.zip'
+vim.g["grammarous#jar_url"] = 'https://languagetool.org/download/LanguageTool-6.4.zip'
 
 vim.diagnostic.config({
   virtual_text = false,
@@ -57,7 +57,7 @@ require('lspconfig')['pyright'].setup{
     on_attach = on_attach,
     flags = lsp_flags,
 }
-require('lspconfig')['tsserver'].setup{
+require('lspconfig')['ts_ls'].setup{
     on_attach = on_attach,
     flags = lsp_flags,
 }
@@ -196,6 +196,14 @@ vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>e', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 
+require('telekasten').setup({
+  home = vim.fn.expand("~/zettelkasten"), -- Put the name of your notes directory here
+})
+vim.keymap.set('n', '<leader>zn', ":Telekasten new_note<CR>", {})
+vim.keymap.set('n', '<leader>zf', ":Telekasten find_notes<CR>", {})
+vim.keymap.set('n', '<leader>zl', ":Telekasten insert_link<CR>", {})
+vim.keymap.set('n', '<leader>zlf', ":Telekasten follow_link<CR>", {})
+
 vim.keymap.set('n', ']g', vim.diagnostic.goto_next, {})
 vim.keymap.set('n', '[g', vim.diagnostic.goto_prev, {})
 vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
@@ -221,7 +229,12 @@ vim.keymap.set('n', '<c-j>', ":wincmd j<CR>", {})
 vim.keymap.set('n', '<c-h>', ":wincmd h<CR>", {})
 vim.keymap.set('n', '<c-l>', ":wincmd l<CR>", {})
 
-vim.cmd [[colorscheme tokyonight]]
+-- vim.cmd [[colorscheme tokyonight]]
+vim.o.background = "dark"
+vim.cmd [[
+  silent! colorscheme tokyonight
+  hi Normal guibg=#1E2128
+]]
 
 -- Custom funcions
 vim.keymap.set("n", 'gj', ":%!python -m json.tool", {})
