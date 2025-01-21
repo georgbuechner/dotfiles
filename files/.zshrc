@@ -139,4 +139,13 @@ alias gst='git status'
 alias gps='git push'
 alias gpl='git pull'
 
+# yay 
+alias yay='yay --aur'
+
 export PATH=$PATH:/home/fux/.local/bin
+
+# Android stuff
+export ANDROID_HOME=/home/fux/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/emulator
