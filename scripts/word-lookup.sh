@@ -1,4 +1,4 @@
-word=$(xclip -o)
+word=$(wl-paste -p)
 word=${word//[$'-., \t\r\n']}
 res=$(curl -s "https://api.dictionaryapi.dev/api/v2/entries/en_US/$word")
 regex=$'"definition":"\K(.*?)(?=")'

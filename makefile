@@ -63,3 +63,8 @@ push:
 
 shs:
 	cp scripts/* /usr/local/bin
+
+trans: 
+	cp scripts/trans/trans.sh /usr/local/bin/ 
+	cp -r scripts/trans/ /usr/local/bin/ 
+	rm /usr/local/bin/trans/trans.sh

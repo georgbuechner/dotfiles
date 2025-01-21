@@ -255,4 +255,22 @@ vim.api.nvim_create_user_command("CompileMain",
 	end,
 	{}
 )
--- vim.keymap.set("n", "cm", ":call CompileMain()", {})
+vim.keymap.set("n", "cm", ":CompileMain<Return>", {})
+vim.keymap.set("n", "<leader>cm", ":make<Return>", {})
+vim.keymap.set("n", "<C-p>", function()
+    local picked_window_id = require('window-picker').pick_window() or vim.api.nvim_get_current_win()
+    vim.api.nvim_set_current_win(picked_window_id)
+end, { desc = "Pick a window" })
+require'marks'.setup {
+  mappings = {
+    set_next = "m,",
+    next = "m]",
+    preview = "m:",
+    set_bookmark0 = "m0",
+    prev = false -- pass false to disable only this default mapping
+  }
+}
+
+require('telekasten').setup({
+  home = vim.fn.expand("~/zettelkasten"), -- Put the name of your notes directory here
+})
