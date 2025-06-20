@@ -1,7 +1,7 @@
 import deepl
 import click
 
-AUTH_KEY = "69b69717-9d68-47c6-9113-bbfc5a088706:fx"
+AUTH_KEY = "d7da4515-f623-4804-bd11-d81d45afacb4:fx"
 
 @click.command()
 @click.argument("inp")
